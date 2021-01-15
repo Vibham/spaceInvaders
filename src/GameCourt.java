@@ -15,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
+import java.io.PrintWriter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -558,6 +559,28 @@ public class GameCourt extends JPanel {
         }
         
         requestFocusInWindow();
+    }
+    
+    //Clear all scores saved
+    public void clearScores() {
+        try {
+            PrintWriter writer = new PrintWriter(FILE_PATH);
+            writer.print("");
+            writer.close();
+            if(playing) {
+                playing = false;
+                int result = JOptionPane.showConfirmDialog(this, "Scores Cleared!", "Clear Scores",
+                        JOptionPane.DEFAULT_OPTION);
+                if (result == 0) {
+                    playing = true;
+                }
+            } else {
+                JOptionPane.showConfirmDialog(this, "Scores Cleared!", "Clear Scores", 
+                        JOptionPane.DEFAULT_OPTION);
+            }
+        } catch (IOException e) {
+            System.out.println("Encountered IOException");
+        }
     }
     
     @Override
