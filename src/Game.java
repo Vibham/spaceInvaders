@@ -54,7 +54,17 @@ public class Game implements Runnable {
         });
         
         control_panel.add(instructions);
-
+        
+        // Clear Scores button
+        final JButton clearScores = new JButton("Clear Scores");
+        clearScores.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                court.clearScores();
+            }
+        });
+        
+        control_panel.add(clearScores);
+        
         // Put the frame on the screen
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
